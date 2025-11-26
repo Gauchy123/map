@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Custom Map with Markers</title>
+
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 31.5, lng: -7.99 }, // Morocco center
+          zoom: 6,
+        });
+
+        // ✅ Put YOUR markers here
+        const markers = [
+          { lat: 34.020882, lng: -6.841650, title: "Rabat" },
+          { lat: 33.573110, lng: -7.589843, title: "Casablanca" },
+          { lat: 35.759465, lng: -5.833954, title: "Tangier" },
+          // Add unlimited markers...
+          // { lat: 00, lng: 00, title: "Your marker" }
+        ];
+
+        // Add markers to map
+        markers.forEach((m) => {
+          new google.maps.Marker({
+            position: { lat: m.lat, lng: m.lng },
+            map: map,
+            title: m.title,
+          });
+        });
+      }
+    </script>
+
+    <script async defer 
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&callback=initMap">
+    </script>
+  </body>
+</html>
